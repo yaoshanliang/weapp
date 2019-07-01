@@ -1,19 +1,40 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+export function getStorage(key) {
+  return wx.getStorageSync(key) || '';
 }
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+export function setStorage(key, value) {
+  return wx.setStorageSync(key, value);
 }
 
-module.exports = {
-  formatTime: formatTime
+// 获取用户信息
+export function getUserInfo(key = '') {
+  const userInfo = wx.getStorageSync('userInfo');
+  if (userInfo) {
+    if (key) {
+      return userInfo[key];
+    } else {
+      return userInfo;
+    }
+  } else {
+    return ''
+  }
+}
+export function formatTime(timeStamp) {
+  var date = new Date(timeStamp);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' 
+  + [hour, minute].map(formatNumber).join(':');
+}
+
+export function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
 }

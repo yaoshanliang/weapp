@@ -1,0 +1,10 @@
+<view class='icon'>
+  <icon type="waiting" size="80" />
+</view>
+<view class='title'>登录后开发者将获取一些权限</view>
+<view class='desc'>获取你的公开信息（昵称、头像等）</view>
+<view class='desc'>获取你的位置信息</view>
+
+<view class="button">
+  <button type="primary" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+</view>

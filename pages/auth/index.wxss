@@ -1,0 +1,17 @@
+.icon {
+ text-align: center;
+ padding-top: 60px;
+}
+.title {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.desc {
+  padding-top: 10px;
+  padding-left: 30px;
+  font-size: 16px;
+  color: #8C8C8C;
+}
+.button {
+  padding: 20px;
+}
