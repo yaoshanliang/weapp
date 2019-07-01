@@ -1,14 +1,37 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/home/index",
     "pages/my/index",
-    "pages/auth/index",
+    "pages/authorize/index",
     "pages/webview/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "E丢丢",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "tabBar": {
+    "selectedColor": "#3EB134",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "/resources/images/home.png",
+        "selectedIconPath": "/resources/images/homeActive.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "/resources/images/my.png",
+        "selectedIconPath": "/resources/images/myActive.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取最近的设备"
+    }
+  },
+  "debug": true
 }

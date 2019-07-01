@@ -1,67 +1,63 @@
-
-import { request } from '../utils/request.js';
-import { config } from '../utils/config.js';
+import { request } from '../utils/request';
+import { config } from '../utils/config';
 
 // 登录
-export function login(data) {
+export function login(param) {
   return request({
-    url: config.URL_RECYCLE + 'user/resident/login',
-    data
+    url: config.URL_PRD + 'user/resident/login',
+    data: param
   });
 }
 
-// 绑定手机号
-export function bindPhone(data) {
+// 获取用户信息
+export function getUserInfo(param) {
   return request({
-    url: config.URL_RECYCLE + 'user/resident/bindPhone',
-    data
+    url: config.URL_PRD + 'resident/getResident.smvc',
+    data: param
   });
 }
 
-// 反馈建议
-export function feedback(data) {
+// 根据支付宝id获取用户信息
+export function getUserInfoProgramUserId(param) {
   return request({
-    url: config.URL_RECYCLE + 'user/resident/feedback',
-    data
+    url: config.URL_PRD + 'getResidentInfoByAlipayUserId.smvc',
+    data: param
+  });
+}
+// 手机号注册居民
+export function registeUser(param) {
+  return request({
+    url: config.URL_PRD + 'phoneRegisterResident.smvc',
+    data: param
+  });
+}
+// 获取验证码
+export function getPhoneValid(param) {
+  return request({
+    url: config.URL_PRD + 'phoneValid.smvc',
+    data: param
   });
 }
 
-// 获取钱包余额
-export function getResidentInfo(data) {
+// 获取验证码
+export function getCheckCode(param) {
   return request({
-    url: config.URL_RECYCLE + 'user/resident/getResidentInfo',
-    data
+    url: config.URL_PRD + 'verificationcode/sendVarificationCode.smvc',
+    data: param
+  });
+}
+// 获取验证码后确定
+export function verifyCodeValidate(param) {
+  return request({
+    url: config.URL_PRD + 'verificationcode/verificationCodeCheck.smvc',
+    data: param
   });
 }
 
-// 零钱包
-export function getWallet(data) {
+// 修改绑定的手机号
+export function updatePhone(param) {
   return request({
-    url: config.URL_RECYCLE + 'user/resident/getWallet',
-    data
-  });
-}
-
-// 发送短信
-export function sendVerfySms(data) {
-  return request({
-    url: config.URL_RECYCLE + 'user/resident/sendVerfySms',
-    data
-  });
-}
-
-// 提现
-export function withdraw(data) {
-  return request({
-    url: config.URL_RECYCLE + 'user/resident/withdraw',
-    data
-  });
-}
-
-// 登录设备
-export function loginDevice(data) {
-  return request({
-    url: config.URL_RECYCLE + 'user/resident/savePhone',
-    data
+    url: config.URL_PRD + 'resident/changePhone.smvc',
+    data: param
   });
 }
