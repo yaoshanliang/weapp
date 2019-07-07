@@ -1,4 +1,5 @@
 import { login } from '../../services/user';
+import { getTenantId } from '../../utils/config.js';
 import { setValue, getValue } from '../../utils/common';
 
 Page({
@@ -12,27 +13,27 @@ Page({
   getUserInfo() {
     wx.getUserInfo({
       success: function (res) {
-        console.log(res);
-        login({
-          authCode: 1,
-        }).then((res) => {
-          if (res.result === 0) {
-            setValue('userInfo', res.data);
-            setValue('userInfoTimestamp', Date.parse(new Date()) / 1000);
-            if ((authorizeToUrl == '/pages/home/index') || (authorizeToUrl == '/pages/box/index') || (authorizeToUrl == '/pages/my/index')) {
-              wx.reLaunch({ url: authorizeToUrl });
+        let user = res;
+        let userInfo = res.userInfo;
+        wx.login({
+          success: function (res) {
+            console.log(res);
+            if (res.code) {
+              login({ code: res.code, ...user, tenantId: getTenantId() }).then((res) => {
+                if (res.result === 0) {
+                  setValue('userInfo', res.data);
+                  setValue('userInfoTimestamp', Date.parse(new Date()) / 1000);
+                  wx.reLaunch({ url: '/pages/home/index' });
+                } else {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.msg,
+                  })
+                }
+              })
             } else {
-              wx.redirectTo({ url: authorizeToUrl });
+              console.log('登录失败！' + res.errMsg)
             }
-          } else {
-            wx.showToast({
-              icon: 'none',
-              title: '登录失败',
-              duration: 3000,
-              success: () => {
-                wx.reLaunch({ url: '/pages/home/index' });
-              }
-            })
           }
         });
       },

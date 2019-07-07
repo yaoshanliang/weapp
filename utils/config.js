@@ -1,5 +1,5 @@
 // 当前环境
-export const env = 'prod';
+export const env = 'test';
 
 // 接口地址
 const proxy = {

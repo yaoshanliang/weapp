@@ -1,9 +1,11 @@
-import { config } from '../../utils/config';
+import { config, getTenantId } from '../../utils/config';
 import { getUserId, setValue, getValue } from '../../utils/common';
 import { getProjectId, getWhetherDisabled, getArticle } from '../../services/index';
+import { login } from '../../services/user';
 
 Page({
   data: {
+    authorizeShow: false,
     bannerList: [],
     commentList: [
       {
@@ -18,34 +20,46 @@ Page({
         "username": "忆梦小姐",
         "category": "电视机",
         "date": " 2019-04-30",
-      }, {
-        "headUrl": "/resources/images/head-3.jpeg",
-        "title": "原来旧衣服也能卖钱，以后旧衣服有去处了。",
-        "username": "喧城老友",
-        "category": "旧衣服",
-        "date": " 2019-04-29",
-      }, {
-        "headUrl": "/resources/images/head-4.jpeg",
-        "title": "上门回收真的方便。",
-        "username": "青山隐隐",
-        "category": "废报纸",
-        "date": " 2019-04-29",
-      }, {
-        "headUrl": "/resources/images/head-5.jpeg",
-        "title": "下单后回收员很快就联系了，约好时间也不用在家里等，很好！",
-        "username": "Tsundere",
-        "category": " 废纸板",
-        "date": " 2019-04-28",
-      },
+      }
     ],
-    tipHidden: true,
     iconDisabled: {}
   },
   onLoad(options) {
-    wx.setNavigationBarColor({
-      frontColor: '#ffffff',      
-      backgroundColor: '#47D196',
-    })
+    var t = this;
+    if (getUserId() == '') {
+      wx.getUserInfo({
+        success: function (res) {
+          let user = res;
+          let userInfo = res.userInfo;
+          wx.login({
+            success: function (res) {
+              console.log(res);
+              if (res.code) {
+                login({ code: res.code, ...user, tenantId: getTenantId() }).then((res) => {
+                  if (res.result === 0) {
+                    setValue('userInfo', res.data);
+                    setValue('userInfoTimestamp', Date.parse(new Date()) / 1000);
+                  } else {
+                    wx.showToast({
+                      icon: 'none',
+                      title: res.msg
+                    })
+                  }
+                })
+              } else {
+                console.log('登录失败！' + res.errMsg)
+              }
+            }
+          });
+        },
+        fail: function (res) {
+          wx.redirectTo({
+            url: '/pages/authorize/index',
+          })
+        }
+      })
+    }
+
 
     var t = this;
     let projectId = '';
@@ -104,21 +118,15 @@ Page({
     }
   },
   goToPath: function (event) {
-    if (getUserId() == "") {
-      setValue('authorizeFromUrl', '/pages/home/index');// 当前路径
-      setValue('authorizeToUrl', event.target.dataset.path);// 授权成功后的跳转路径
-      wx.navigateTo({ url: '/pages/authorize/index' })
+    if (this.data.iconDisabled[event.target.dataset.index]) {
+      wx.navigateTo({
+        url: event.target.dataset.path
+      });
     } else {
-      if (this.data.iconDisabled[event.target.dataset.index]) {
-        wx.navigateTo({
-          url: event.target.dataset.path
-        });
-      } else {
-        wx.showToast({
-          type: 'fail',
-          content: '该服务暂未开通'
-        })
-      }
+      wx.showToast({
+        type: 'fail',
+        content: '该服务暂未开通'
+      })
     }
   },
   goToRecycle: function () {
@@ -151,12 +159,6 @@ Page({
         url: '/pages/webview/index?url=' + event.target.dataset.url
       });
     }
-  },
-  iknow: function () {
-    setValue('tipHidden', 1);
-    this.setData({
-      tipHidden: true
-    })
   },
   alertInfo: function () {
     wx.alert({

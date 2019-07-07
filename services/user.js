@@ -4,7 +4,7 @@ import { config } from '../utils/config';
 // 登录
 export function login(param) {
   return request({
-    url: config.URL_PRD + 'user/resident/login',
+    url: config.URL_PRD + 'user/resident/wxlogin',
     data: param
   });
 }

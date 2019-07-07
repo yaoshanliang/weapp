@@ -1,15 +1,14 @@
 {
-  "pages":[
+  "pages": [
     "pages/home/index",
     "pages/my/index",
     "pages/authorize/index",
     "pages/webview/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "E丢丢",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "weapp",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "selectedColor": "#3EB134",
@@ -33,5 +32,6 @@
       "desc": "你的位置信息将用于获取最近的设备"
     }
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }

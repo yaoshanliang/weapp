@@ -17,23 +17,15 @@ export function getUserInfo(key = '') {
 // 获取token
 export function getToken() {
   let res = wx.getStorageSync(env + '_userInfo');
-
-  if (res.data) {
-    return res.data.token;
+  if (res) {
+    return res.token;
   }
   return undefined;
 }
 
 // 获取userId
 export function getUserId() {
-  let timestampStorage = wx.getStorageSync( env + '_userInfoTimestamp');
-  let timestamp = 0;
-  if (timestampStorage.APDataStorage) {
-    timestamp = timestampStorage.APDataStorage;
-  }
-  if (timestampStorage.data) {
-    timestamp = timestampStorage.data;
-  }
+  let timestamp = wx.getStorageSync(env + '_userInfoTimestamp');
   if (!timestamp) {
     return '';
   } else {
@@ -45,8 +37,8 @@ export function getUserId() {
   }
 
   let res = wx.getStorageSync(env + '_userInfo');
-  if (res.data) {
-    return res.data.id;
+  if (res) {
+    return res.id;
   }
   return '';
 }
@@ -61,8 +53,8 @@ export function setValue(key, value) {
 // 根据key获取value
 export function getValue(key) {
   let res = wx.getStorageSync(env + '_' + key);
-  if (res.data || res.data == 0) {
-    return res.data;
+  if (res || res == 0) {
+    return res;
   }
   return '';
 }
