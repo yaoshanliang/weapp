@@ -5,5 +5,5 @@
 <view class='desc'>获取你的公开信息（昵称、头像等）</view>
 
 <view class="button">
-  <button type="primary" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权 </button>
+  <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权 </button>
 </view>
