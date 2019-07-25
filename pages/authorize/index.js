@@ -16,7 +16,7 @@ Page({
           success: function (res) {
             console.log(res);
             if (res.code) {
-              login({ code: res.code, userInfo }).then((res) => {
+              login({ code: res.code, ...userInfo }).then((res) => {
                 if (res.code === 0) {
                   setValue('userInfo', res.data);
                   setValue('userInfoTimestamp', Date.parse(new Date()) / 1000);
