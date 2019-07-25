@@ -8,7 +8,6 @@ import { getTenantId } from '../utils/config';
 export function request(params) {
   let { url, headers, data, method = 'GET' } = params;
   let token = getToken();
-  url = `${url}` + '?tenantId=' + getTenantId();
   let ajaxPropmise = new Promise((resolve, reject) => {
     wx.request({
       url: url,

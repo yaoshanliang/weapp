@@ -1,13 +1,10 @@
-import { login } from '../../services/user';
-import { getTenantId } from '../../utils/config.js';
 import { setValue, getValue } from '../../utils/common';
+import { login } from '../../services/user';
 
 Page({
 
   data: {
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
 
   getUserInfo() {
@@ -19,11 +16,11 @@ Page({
           success: function (res) {
             console.log(res);
             if (res.code) {
-              login({ code: res.code, ...user, tenantId: getTenantId() }).then((res) => {
-                if (res.result === 0) {
+              login({ code: res.code, userInfo }).then((res) => {
+                if (res.code === 0) {
                   setValue('userInfo', res.data);
                   setValue('userInfoTimestamp', Date.parse(new Date()) / 1000);
-                  wx.reLaunch({ url: '/pages/home/index' });
+                  wx.switchTab({ url: '/pages/home/index' });
                 } else {
                   wx.showToast({
                     icon: 'none',
@@ -32,7 +29,10 @@ Page({
                 }
               })
             } else {
-              console.log('登录失败！' + res.errMsg)
+              wx.showToast({
+                icon: 'none',
+                title: res.errMsg,
+              })
             }
           }
         });
