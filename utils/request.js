@@ -1,5 +1,4 @@
 import { getToken } from './common.js';
-import { getTenantId } from '../utils/config';
 
 /**
  * request 接口请求公共部分
