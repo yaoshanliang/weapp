@@ -8,3 +8,11 @@ export function login(param) {
     data: param
   });
 }
+
+// 用户信息
+export function getUserInfo(param) {
+  return request({
+    url: config.prefix + 'user/info',
+    data: param
+  });
+}

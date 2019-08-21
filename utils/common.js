@@ -2,7 +2,8 @@ import { env } from '../utils/config';
 
 // 获取用户信息
 export function getUserInfo(key = '') {
-  const userInfo = wx.getStorageSync('userInfo');
+  const userInfo = wx.getStorageSync(env + '_userInfo');
+  console.log(userInfo);
   if (userInfo) {
     if (key) {
       return userInfo[key];
@@ -16,11 +17,7 @@ export function getUserInfo(key = '') {
 
 // 获取token
 export function getToken() {
-  let res = wx.getStorageSync(env + '_userInfo');
-  if (res) {
-    return res.token;
-  }
-  return undefined;
+  return getUserInfo('token');
 }
 
 // 获取userId

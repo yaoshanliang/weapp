@@ -1,13 +1,14 @@
-import {
-  config
-} from '../../utils/config';
-import {
-  getUserId,
-  setValue
-} from '../../utils/common';
+import { getUserInfo } from '../../services/user';
+
 Page({
-  data: {},
+  data: {
+    userInfo: {}
+  },
   onLoad() {
-    
+    getUserInfo().then((res) => {
+      this.setData({
+        userInfo: res.data
+      })
+    })
   },
 });

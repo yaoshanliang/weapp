@@ -6,13 +6,12 @@ import { getToken } from './common.js';
  */
 export function request(params) {
   let { url, headers, data, method = 'GET' } = params;
-  let token = getToken();
   let ajaxPropmise = new Promise((resolve, reject) => {
     wx.request({
       url: url,
       data,
       method,
-      header: {access_token: token},
+      header: { token: getToken()},
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
