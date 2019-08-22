@@ -4,7 +4,6 @@
     "pages/my/index",
     "pages/authorize/index",
     "pages/webview/index",
-    "pages/user",
     "pages/user/index",
     "pages/about/index"
   ],

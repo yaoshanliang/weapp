@@ -40,7 +40,7 @@ Page({
             success: function() {
               setTimeout(function () {
                 wx.navigateBack({});
-              }, 1000) //延迟时间
+              }, 1000)
             }
           })
         } else {
