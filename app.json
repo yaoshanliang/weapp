@@ -3,12 +3,15 @@
     "pages/home/index",
     "pages/my/index",
     "pages/authorize/index",
-    "pages/webview/index"
+    "pages/webview/index",
+    "pages/user",
+    "pages/user/index",
+    "pages/about/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "weapp",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#47D196",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "selectedColor": "#3EB134",

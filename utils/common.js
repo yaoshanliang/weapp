@@ -3,7 +3,6 @@ import { env } from '../utils/config';
 // 获取用户信息
 export function getUserInfo(key = '') {
   const userInfo = wx.getStorageSync(env + '_userInfo');
-  console.log(userInfo);
   if (userInfo) {
     if (key) {
       return userInfo[key];
