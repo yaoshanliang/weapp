@@ -1,1 +1,11 @@
-/* pages/user/index.wxss */
+@import "../../app";
+.button {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.delete {
+  float: right;
+  padding-top: 20px;
+  padding-right: 10px;
+}

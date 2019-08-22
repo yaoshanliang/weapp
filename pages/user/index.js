@@ -1,66 +1,55 @@
-// pages/user/index.js
+import { getUserInfo, updateUserInfo } from '../../services/user';
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    item: {
+      nickname: '',
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow() {
+    getUserInfo().then((res) => {
+      let item = {
+        id: res.data.id,
+        nickname: res.data.nickname
+      }
+      this.setData({
+        item
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  inputChange(event) {
+    console.log(event);
+    let item = this.data.item;
+    let field = event.target.dataset.field;
+    item[field] = event.detail;
+    this.setData({
+      item
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  goToSave() {
+    let item = this.data.item;
+    if (item.id) {
+      updateUserInfo({
+        ...item
+      }).then((res) => {
+        if (res.code == 0) {
+          wx.showToast({
+            title: res.message,
+            success: function() {
+              setTimeout(function () {
+                wx.navigateBack({});
+              }, 1000) //延迟时间
+            }
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: res.message,
+          })
+        }
+      });
+    } 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

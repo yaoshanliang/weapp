@@ -4,7 +4,7 @@ Page({
   data: {
     userInfo: {}
   },
-  onLoad() {
+  onShow() {
     getUserInfo().then((res) => {
       this.setData({
         userInfo: res.data

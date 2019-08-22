@@ -16,3 +16,12 @@ export function getUserInfo(param) {
     data: param
   });
 }
+
+// 更新用户信息
+export function updateUserInfo(param) {
+  return request({
+    url: config.prefix + 'user/info',
+    method: 'POST',
+    data: param
+  });
+}

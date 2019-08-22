@@ -1,7 +1,5 @@
 {
   "navigationBarTitleText": "我的",
-  "navigationBarBackgroundColor": "#47D196",
-  "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-cell": "vant-weapp/cell/index",
     "van-cell-group": "vant-weapp/cell-group/index",

@@ -1,2 +1,10 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+
+<van-field label="昵称" required value="{{ item.nickname }}"  input-align="right" bind:change="inputChange" data-field="nickname" />
+
+<view class='button'>
+  <van-button type="primary" block bind:click="goToSave">保存</van-button>
+</view>
+
+<van-action-sheet show="{{ showSafeDate }}">
+  <van-picker show-toolbar columns="{{safeDateList}}" bind:confirm="onConfirmSafeDate" bind:cancel="onCancel" />
+</van-action-sheet>

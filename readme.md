@@ -11,8 +11,6 @@
 ![](http://about.iat.net.cn/images/%E3%80%90weapp%E3%80%91qrcode.jpg)
 
 
-## 预览
-
 
 ---
 
@@ -20,4 +18,3 @@
 ## 安装
 
     git clone https://github.com/yaoshanliang/weapp.git
-
