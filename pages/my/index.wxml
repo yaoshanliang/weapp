@@ -1,12 +1,15 @@
-<view class='userInfo'>
-  <view class='left'>
-    <image style="width: 65px; height: 65px;" src="{{userInfo.avatar}}"></image>
-  </view>
-  <view class='right'>
-    {{userInfo.nickname}}
+<view class="topBG">
+  <image class="topImage" src="/resources/images/top-bg.png"></image>
+  <view class="userInfo">
+    <view class="left">
+      <image class="head" src="{{userInfo.avatar}}"></image>
+    </view>
+    <view class="right">
+      <view class="name">{{userInfo.nickname}}</view>
+    </view>
   </view>
 </view>
 
 <van-cell title="个人信息" is-link url="/pages/user/index" />
 
-<van-cell title="关于" is-link url="/pages/about/index"/>
+<van-cell title="关于" is-link url="/pages/about/index" />

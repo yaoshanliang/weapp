@@ -9,11 +9,11 @@
   ],
   "window": {
     "navigationBarTitleText": "weapp",
-    "navigationBarBackgroundColor": "#47D196",
+    "navigationBarBackgroundColor": "#1bd0ad",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "selectedColor": "#3EB134",
+    "selectedColor": "#1bd0ad",
     "list": [
       {
         "pagePath": "pages/home/index",
