@@ -38,11 +38,25 @@ Page({
           });
         },
         fail: function (res) {
-          wx.redirectTo({
-            url: '/pages/authorize/index',
-          })
+          // wx.redirectTo({
+          //   url: '/pages/authorize/index',
+          // })
         }
       })
     }
+  },
+  checkLogin() {
+    if (getUserId() == '') {
+      wx.navigateTo({
+        url: '/pages/authorize/index',
+      })
+      return;
+    }
+  },
+  goToPath: function (t) {
+    this.checkLogin();
+    wx.navigateTo({
+      url: '/pages/my/index'
+    })
   },
 });

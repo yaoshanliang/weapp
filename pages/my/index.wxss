@@ -54,4 +54,14 @@
 
 .right {
   width: 70%;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.login {
+  font-size: 36rpx;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  text-decoration: underline;
 }

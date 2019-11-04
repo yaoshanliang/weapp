@@ -11,4 +11,9 @@ Page({
       })
     })
   },
+  goToLogin() {
+    wx.navigateTo({
+      url: '/pages/authorize/index',
+    })
+  },
 });
